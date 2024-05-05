@@ -1,0 +1,32 @@
+name: Deployment Pipeline
+
+on:
+  workflow_run:
+    workflows: ["Data Pipeline"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: Download artifacts
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: static-site
+      # - name: Test artifacts Download
+      #   run: ls -R; date
+
+      - name: Set up Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Azure AKS set context
+        run: az aks get-credentials --resource-group aimlprojectrg --name amlkubernets
+
+      - name: Deploy to AKS
+        run: kubectl apply -f deployment.yaml
