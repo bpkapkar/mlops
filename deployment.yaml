@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: ml-flask-app
-        image: aimlmodelcontainer.azurecr.io/ml-flask-app:latest
+        image: aimlnewcontianer.azurecr.io/ml-flask-app:latest
         ports:
         - containerPort: 5000 
