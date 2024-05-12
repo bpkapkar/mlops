@@ -32,7 +32,7 @@ jobs:
 
       - name: Build and push Docker image
         env:
-          DOCKER_REGISTRY: aimlmodelcontainer.azurecr.io
+          DOCKER_REGISTRY: aimlnewcontianer.azurecr.io
           IMAGE_NAME: ml-flask-app
           IMAGE_TAG: latest
         run: |
