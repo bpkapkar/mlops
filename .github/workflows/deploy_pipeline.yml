@@ -26,7 +26,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Azure AKS set context
-        run: az aks get-credentials --resource-group cicdproject   --name cicdkubernets
+        run: az aks get-credentials --resource-group cicdproject   --name cicdkubeproj
 
       - name: Deploy to AKS
         run: kubectl apply -f deployment.yaml
